@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<metacharset="utf-8">
+	<title>Liste des Personnes</title>
+</head>
+
+<body>
+	<input type="button" class="btn btn-primary" value="Voir les espèces" onclick="window.location='/species'" />
+	<input type="button" class="btn btn-primary" value="Voir les animaux" onclick="window.location='/animal'" />
+	<button type="button" class="btn btn-primary" onclick="window.location='/person/create'">➕ Ajouter une Personne</button>
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>Age</th>
+				<th>Détails</th>
+				<th>Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="person: ${persons}">
+				<td th:text="${person.firstname}" />
+				<td th:text="${person.lastname}" />
+				<td th:text="${person.age}" />
+				<td><a th:href="@{'/person/' + ${person.id}}">Détails</a></td>
+				<td><a th:href="@{'/person/delete/' + ${person.id}}"onclick="return confirm('Êtes-vous sûr ?')">🗑 </a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
