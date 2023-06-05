@@ -26,7 +26,7 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
     
     @Column(name = "color", length = 50, nullable = true)
     @Size(max = 50)
@@ -63,7 +63,7 @@ public class Animal {
 		this.species = species;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

@@ -1,4 +1,4 @@
-package fr.diginamic.SpeciesMVC;
+package fr.diginamic.SpeciesREST;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -19,7 +19,7 @@ public class Species {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(name = "common_name", length = 50, nullable = false)
     @NotEmpty
@@ -45,7 +45,7 @@ public class Species {
 
 	// Getters et setters
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

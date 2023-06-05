@@ -22,7 +22,7 @@ public class Person {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "age", nullable = true)
     private Integer age;
@@ -55,7 +55,7 @@ public class Person {
         this.lastname = lastname;
     }
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
