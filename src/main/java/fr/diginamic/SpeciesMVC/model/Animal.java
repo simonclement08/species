@@ -17,6 +17,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -43,7 +44,7 @@ public class Animal {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "species_id")
-    @NotEmpty
+    @NotNull
     private Species species;
 
     @ManyToMany(mappedBy = "animals")
@@ -65,6 +66,10 @@ public class Animal {
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getColor() {

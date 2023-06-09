@@ -39,6 +39,8 @@ public class AnimalController {
 		Optional<Animal> animal = animalRepository.findById(id);
 		if (animal.isPresent()) {
 			model.addAttribute(animal.get());
+			model.addAttribute("sexs", Sex.values());
+			model.addAttribute("speciesList", speciesRepository.findAll(Sort.by(Sort.Direction.ASC, "commonName")));
 			return "details_animal";
 		}
 		return "error";
@@ -54,6 +56,7 @@ public class AnimalController {
 
 	@PostMapping("/animal")
 	public String createOrUpdate(@Valid Animal animal, BindingResult result) {
+		System.err.println(animal);
 		this.animalRepository.save(animal);
 		return "redirect:/animal";
 	}

@@ -4,25 +4,28 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<metacharset="utf-8">
-	<title>Personne</title>
+		<title>Personne</title>
 </head>
 
 <body>
 	<h1>Détails de la personne</h1>
-    <table class="table">
-        <tr>
-            <th>Nom :</th>
-            <td th:text="${person.firstname}"></td>
-        </tr>
-        <tr>
-            <th>Prénom :</th>
-            <td th:text="${person.lastname}"></td>
-        </tr>
-        <tr>
-            <th>Age :</th>
-            <td th:text="${person.age}"></td>
-        </tr>
-    </table>
+	<form th:object="${person}" th:action="@{/person}" method="post"><input type="hidden" th:field="*{id}" />
+		<table class="table">
+			<tr>
+				<th>Nom :</th>
+				<td><input type="text" th:field="*{firstname}" id="firstname" class="form-control" /></td>
+			</tr>
+			<tr>
+				<th>Prénom :</th>
+				<td><input type="text" th:field="*{lastname}" id="lastname" class="form-control" /></td>
+			</tr>
+			<tr>
+				<th>Age :</th>
+				<td><input type="number" th:field="*{age}" id="age" class="form-control" /></td>
+			</tr>
+		</table>
+		<input type="submit" class="btn btn-primary" value="Sauver" />
+	</form>
 	<div>
 		<input type="button" class="btn btn-danger" value="Retour" onclick="window.location='/person'" />
 	</div>
