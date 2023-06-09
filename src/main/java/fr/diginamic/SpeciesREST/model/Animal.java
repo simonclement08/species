@@ -3,6 +3,8 @@ package fr.diginamic.SpeciesREST.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import fr.diginamic.SpeciesREST.enums.Sex;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +48,7 @@ public class Animal {
     @NotEmpty
     private Species species;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "animals")
     private List<Person> persons;
 

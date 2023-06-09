@@ -28,8 +28,8 @@ public class Person {
     private Integer age;
 
     @Column(name = "firstname", length = 50, nullable = false)
-    @NotEmpty
-    @Size(max = 50)
+//    @NotEmpty
+//    @Size(max = 50)
     private String firstname;
 
     @Column(name = "lastname", length = 50, nullable = false)

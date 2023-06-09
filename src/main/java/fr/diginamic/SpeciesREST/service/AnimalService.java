@@ -8,10 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.diginamic.SpeciesREST.enums.Sex;
+import fr.diginamic.SpeciesREST.exception.EntityNotFoundException;
+import fr.diginamic.SpeciesREST.exception.EntityToCreateHasAnIdException;
+import fr.diginamic.SpeciesREST.exception.EntityToUpdateHasNoIdException;
 import fr.diginamic.SpeciesREST.model.Animal;
 import fr.diginamic.SpeciesREST.model.Species;
 import fr.diginamic.SpeciesREST.repository.AnimalRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @Service
@@ -33,10 +35,16 @@ public class AnimalService {
 	}
 
 	public Animal create(@Valid Animal animalToCreate) {
+		if (animalToCreate.getId() != null) {
+			throw new EntityToCreateHasAnIdException();
+		}
 		return this.animalRepository.save(animalToCreate);
 	}
 
 	public Animal update(@Valid Animal animalToUptade) {
+		if (animalToUptade.getId() == null) {
+			throw new EntityToUpdateHasNoIdException();
+		}
 		return this.animalRepository.save(animalToUptade);
 	}
 

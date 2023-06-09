@@ -8,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import fr.diginamic.SpeciesREST.exception.EntityNotFoundException;
+import fr.diginamic.SpeciesREST.exception.EntityToCreateHasAnIdException;
+import fr.diginamic.SpeciesREST.exception.EntityToUpdateHasNoIdException;
 import fr.diginamic.SpeciesREST.model.Species;
 import fr.diginamic.SpeciesREST.repository.SpeciesRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 @Service
@@ -32,10 +34,16 @@ public class SpeciesService {
 	}
 
 	public Species create(@Valid Species speciesToCreate) {
+		if (speciesToCreate.getId() != null) {
+			throw new EntityToCreateHasAnIdException();
+		}
 		return this.speciesRepository.save(speciesToCreate);
 	}
 
 	public Species update(@Valid Species speciesToUptade) {
+		if (speciesToUptade.getId() == null) {
+			throw new EntityToUpdateHasNoIdException();
+		}
 		return this.speciesRepository.save(speciesToUptade);
 	}
 

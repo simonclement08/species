@@ -2,6 +2,8 @@ package fr.diginamic.SpeciesREST.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +33,7 @@ public class Species {
     @Size(max = 120)
 	private String latinName;
 
+    @JsonIgnore
 	@OneToMany(mappedBy = "species", cascade = CascadeType.ALL)
     private List<Animal> animals;
 
